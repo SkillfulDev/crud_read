@@ -13,10 +13,10 @@ public class  PersonDAO {
 
     {
         people = new ArrayList<>();
-        people.add(new Person (++PERSON_COUNT,"Tom"));
-        people.add(new Person (++PERSON_COUNT,"Billy"));
-        people.add(new Person (++PERSON_COUNT,"Anna"));
-        people.add(new Person (++PERSON_COUNT,"Bobi"));
+        people.add(new Person (++PERSON_COUNT,"Tom","Ray","tom@gmail.com"));
+        people.add(new Person (++PERSON_COUNT,"Billy","McWema","Billy@gmail.com"));
+        people.add(new Person (++PERSON_COUNT,"Anna","Solver","Anna@gmail.com"));
+        people.add(new Person (++PERSON_COUNT,"Bobi","Mash>","Bobi@gmail.com"));
     }
 
     public List<Person> index(){
@@ -25,5 +25,10 @@ public class  PersonDAO {
 
     public Person show(final int id){
         return people.stream().filter(person->person.getId()==id).findAny().orElse(null);
+    }
+
+    public void save(Person person) {
+        person.setId(++PERSON_COUNT);
+        people.add(person);
     }
 }
