@@ -9,12 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e99559d-26d5-4138-8051-668242de3158" name="Changes" comment="Add_Create">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/edit.html" afterDir="false" />
+    <list default="true" id="4e99559d-26d5-4138-8051-668242de3158" name="Changes" comment="Add_Patch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ua/chernonog/springcourse/config/MySpringMvcDispatcherSerlvetIntitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/chernonog/springcourse/config/MySpringMvcDispatcherSerlvetIntitializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ua/chernonog/springcourse/controllers/PeopleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/chernonog/springcourse/controllers/PeopleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ua/chernonog/springcourse/dao/PersonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ua/chernonog/springcourse/dao/PersonDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/show.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +66,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 10.0.27" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.27" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/people" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="crud_read:war exploded">
@@ -165,7 +167,7 @@
       <workItem from="1677484901905" duration="6831000" />
       <workItem from="1677569314736" duration="3453000" />
       <workItem from="1677584167301" duration="1957000" />
-      <workItem from="1677586155998" duration="706000" />
+      <workItem from="1677586155998" duration="2610000" />
     </task>
     <task id="LOCAL-00001" summary="Add_read">
       <created>1677485114271</created>
@@ -181,7 +183,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677492199423</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add_Patch">
+      <created>1677586874232</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677586874232</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +210,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add_read" />
     <MESSAGE value="Add_Create" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add_Create" />
+    <MESSAGE value="Add_Patch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add_Patch" />
   </component>
 </project>
