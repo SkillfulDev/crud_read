@@ -28,15 +28,28 @@ public class PeopleController {
         model.addAttribute("person", personDao.show(id));
         return "people/show";
     }
-@GetMapping("/new")
-    public String newPerson(Model model){
+
+    @GetMapping("/new")
+    public String newPerson(Model model) {
         model.addAttribute("person", new Person());
         return "people/new";
     }
+
     @PostMapping()
-    public String save(@ModelAttribute("person") Person person){
+    public String create(@ModelAttribute("person") Person person) {
         personDao.save(person);
         return "redirect:/people";
 
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editPage(@PathVariable("id") int id, Model model) {
+        model.addAttribute("person", personDao.show(id));
+        return "people/edit";
+    }
+    @PatchMapping("/{id}")
+    public String change (@PathVariable("id") int id, @ModelAttribute ("person") Person person){
+        personDao.update(id,person);
+        return "redirect:/people";
     }
 }
