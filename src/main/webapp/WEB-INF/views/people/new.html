@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create Person</title>
@@ -14,6 +14,9 @@
     <br>
     <label for="email">Enter Email</label>
     <input type="text" th:field="*{email}" id="email">
+    <label for="age">Enter Age</label>
+    <input type="text" th:field="*{age}" id="age">
+
 
     <input type="submit" value="Create!">
 </form>

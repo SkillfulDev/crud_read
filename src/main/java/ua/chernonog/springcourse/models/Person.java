@@ -6,16 +6,27 @@ public class Person {
 
     private String surname;
 
+    private int age;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     private String email;
 
     public Person (){}
 
 
-    public Person(int id, String name, String surname, String email) {
+    public Person(int id, String name, String surname, String email,int age) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.age = age;
     }
 
     public int getId() {
