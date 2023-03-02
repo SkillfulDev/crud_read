@@ -1,8 +1,10 @@
 package ua.chernonog.springcourse.controllers;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ua.chernonog.springcourse.dao.PersonDAO;
 import ua.chernonog.springcourse.models.Person;
@@ -36,7 +38,9 @@ public class PeopleController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("person") Person person) {
+    public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
+        if(bindingResult.hasErrors())
+            return "people/new";
         personDao.save(person);
         return "redirect:/people";
 
@@ -47,13 +51,18 @@ public class PeopleController {
         model.addAttribute("person", personDao.show(id));
         return "people/edit";
     }
+
     @PatchMapping("/{id}")
-    public String chaegePerson (@PathVariable("id") int id, @ModelAttribute ("person") Person person){
-        personDao.update(id,person);
+    public String chaegePerson(@PathVariable("id") int id, @ModelAttribute("person")
+    @Valid Person person, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "people/edit";
+        personDao.update(id, person);
         return "redirect:/people";
     }
+
     @DeleteMapping("/{id}")
-    public String deletePerson(@PathVariable("id") int id){
+    public String deletePerson(@PathVariable("id") int id) {
         personDao.delete(id);
         return "redirect:/people";
 
