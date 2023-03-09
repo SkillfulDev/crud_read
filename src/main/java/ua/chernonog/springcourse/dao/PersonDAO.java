@@ -59,7 +59,13 @@ public class PersonDAO {
         return null;
     }
 
-    public void save(Person person) {
+    public void save(Person person) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO person VALUES(1,?,?,?)");
+        preparedStatement.setString(1,person.getName());
+        preparedStatement.setString(2, person.getEmail());
+        preparedStatement.setInt(3, person.getAge());
+
+        preparedStatement.executeUpdate();
 
     }
 

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import ua.chernonog.springcourse.dao.PersonDAO;
 import ua.chernonog.springcourse.models.Person;
 
+import java.sql.SQLException;
+
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
@@ -38,7 +40,7 @@ public class PeopleController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
+    public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) throws SQLException {
         if(bindingResult.hasErrors())
             return "people/new";
         personDao.save(person);
