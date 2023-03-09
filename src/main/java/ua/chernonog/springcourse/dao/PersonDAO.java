@@ -55,8 +55,8 @@ public class PersonDAO {
     }
 
 
-    public Person show(final int id) {
-        return null;
+    public Person show(final int id) throws SQLException {
+
     }
 
     public void save(Person person) throws SQLException {
@@ -69,7 +69,7 @@ public class PersonDAO {
 
     }
 
-    public void update(int id, Person person) {
+    public void update(int id, Person person) throws SQLException {
         Person personToBeUpdate = show(id);
         personToBeUpdate.setName(person.getName());
         personToBeUpdate.setEmail(person.getEmail());

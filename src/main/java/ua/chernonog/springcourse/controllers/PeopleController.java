@@ -55,7 +55,7 @@ public class PeopleController {
     }
 
     @PatchMapping("/{id}")
-    public String chaegePerson(@PathVariable("id") int id, @ModelAttribute("person")
+    public String changePerson(@PathVariable("id") int id, @ModelAttribute("person")
     @Valid Person person, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "people/edit";
