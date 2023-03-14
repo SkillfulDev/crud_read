@@ -2,6 +2,7 @@ package ua.chernonog.springcourse.dao;
 
 import org.postgresql.jdbc.PgConnection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -45,5 +46,48 @@ public class PersonDAO {
 
     public void delete(int id) {
         jdbcTemplate.update("DELETE FROM person WHERE id=?", id);
+    }
+
+    public void requestWithBatch() {
+        List<Person> people = create1000People();
+        long before = System.currentTimeMillis();
+        for (Person person : people) {
+            jdbcTemplate.update("INSERT INTO person VALUES(?,?,?,?)", person.getId(),
+                    person.getName(), person.getEmail(), person.getAge());
+        }
+        long after = System.currentTimeMillis();
+        System.out.println(after - before);
+    }
+
+
+    private List<Person> create1000People() {
+        List<Person> people = new ArrayList<>();
+        for (int i = 0; i < 1000; i++) {
+            people.add(new Person(i, "NewPerson" + i, "Email" + i + "@gmail.com", 18 + i));
+        }
+        return people;
+    }
+
+    public void requestWitoutBatch() {
+        List<Person> people = create1000People();
+        long before = System.currentTimeMillis();
+        jdbcTemplate.batchUpdate("INSERT INTO person(name,email,age) VALUES (?, ?, ?)", new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                ps.setString(1,people.get(i).getName());
+                ps.setString(2,people.get(i).getEmail());
+                ps.setInt(3,people.get(i).getAge());
+            }
+
+            @Override
+            public int getBatchSize() {
+                return people.size();
+            }
+        });
+
+        long after = System.currentTimeMillis();
+
+        System.out.println(after - before);
+
     }
 }
