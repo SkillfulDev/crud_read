@@ -1,10 +1,7 @@
 package ua.chernonog.springcourse.models;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import jdk.jfr.Name;
 import org.springframework.validation.annotation.Validated;
 
@@ -15,21 +12,25 @@ public class Person {
     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String name;
 
-    @Min(value = 0,message = "Age can not be negative digit")
+    @Min(value = 0, message = "Age can not be negative digit")
     private int age;
     @Email(message = "This is not valid email")
-    @NotEmpty(message="Email should not be empty")
+    @NotEmpty(message = "Email should not be empty")
     private String email;
+@Pattern(regexp = "[A-Z]\\w+, [A-Z]\\w+, \\d{6}", message="Invalid Address" )
+    private String address;
+
 
     public Person() {
     }
 
 
-    public Person(int id, String name, String email, int age) {
+    public Person(int id, String name, String email, int age, String address) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.age = age;
+        this.address = address;
     }
 
     public int getId() {
@@ -49,7 +50,6 @@ public class Person {
     }
 
 
-
     public int getAge() {
         return age;
     }
@@ -64,5 +64,13 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

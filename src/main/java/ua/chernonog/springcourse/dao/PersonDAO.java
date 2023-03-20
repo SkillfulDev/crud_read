@@ -39,14 +39,15 @@ public class PersonDAO {
     }
 
     public void save(Person person) throws SQLException {
-        jdbcTemplate.update("INSERT INTO person(name,email,age) VALUES(?,?,?)",
-                person.getName(), person.getEmail(), person.getAge());
+        jdbcTemplate.update("INSERT INTO person(name,email,age,address) VALUES(?,?,?,?)",
+                person.getName(), person.getEmail(), person.getAge(),person.getAddress());
 
     }
 
     public void update(int id, Person person) {
-        jdbcTemplate.update("UPDATE person SET name=?,email=?,age=? WHERE id = ?", person.getName(), person.getEmail(),
-                person.getAge(), id);
+        jdbcTemplate.update("UPDATE person SET name=?,email=?,age=? address=? WHERE id = ?",
+                person.getName(), person.getEmail(),
+                person.getAge(),person.getAddress(), id);
 
     }
 
@@ -58,7 +59,7 @@ public class PersonDAO {
         List<Person> people = create1000People();
         long before = System.currentTimeMillis();
         for (Person person : people) {
-            jdbcTemplate.update("INSERT INTO person VALUES(?,?,?,?)", person.getId(),
+            jdbcTemplate.update("INSERT INTO person (name,email,age) VALUES(?,?,?)",
                     person.getName(), person.getEmail(), person.getAge());
         }
         long after = System.currentTimeMillis();
@@ -69,15 +70,18 @@ public class PersonDAO {
     private List<Person> create1000People() {
         List<Person> people = new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
-            people.add(new Person(i, "NewPerson" + i, "Email" + i + "@gmail.com", 18 + i));
+            people.add(new Person(i, "NewPerson" + i, "Email" + i + "@gmail.com"
+                    , 18 + i,"Some Address"));
         }
         return people;
+
     }
 
     public void requestWitoutBatch() {
         List<Person> people = create1000People();
         long before = System.currentTimeMillis();
-        jdbcTemplate.batchUpdate("INSERT INTO person(name,email,age) VALUES (?, ?, ?)", new BatchPreparedStatementSetter() {
+        jdbcTemplate.batchUpdate("INSERT INTO person(name,email,age) VALUES (?, ?, ?)",
+                new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 ps.setString(1,people.get(i).getName());
